@@ -211,8 +211,20 @@
             "properties": {
                 "ahk++.executePath": {
                     "type": "string",
-                    "default": "C:/Program Files/AutoHotkey/AutoHotkeyU64.exe",
-                    "description": "The execute path of AHK."
+                    "default": "C:/Program Files/AutoHotkey/AutoHotkey.exe",
+                    "description": "AutoHotkey executable path.",
+                    "enum": [
+                        "C:/Program Files/Autohotkey/AutoHotkey.exe",
+                        "C:/Program Files/Autohotkey/AutoHotkeyA32.exe",
+                        "C:/Program Files/Autohotkey/AutoHotkeyU32.exe",
+                        "C:/Program Files/Autohotkey/AutoHotkeyU64.exe"
+                    ],
+                    "enumDescriptions": [
+                        "AutoHotkey executable (insatllation default).",
+                        "AutoHotkeyA32 executable.",
+                        "AutoHotkeyU32 executable.",
+                        "AutoHotkeyU64 executable."
+                    ]
                 },
                 "ahk++.compilePath": {
                     "type": "string",

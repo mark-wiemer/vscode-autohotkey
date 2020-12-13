@@ -55,7 +55,8 @@ export class FormatProvider implements vscode.DocumentFormattingEditProvider {
                 }
                 continue;
             }
-            const purityText = CodeUtil.purity(originText.toLowerCase());
+            const purityText = CodeUtil.purity_greedy(originText.toLowerCase());
+            // console.log(purityText)
             let notDeep = true;
 
             if (
@@ -69,9 +70,9 @@ export class FormatProvider implements vscode.DocumentFormattingEditProvider {
                 }
                 notDeep = false;
             }
-
+            // \bword\b:whole words only, /i:case insensitive
             if (purityText.match(/\b(return)\b/i) && tagDeep === deep) {
-                tagDeep == 0;
+                tagDeep == 0; //this does nothing
                 deep--;
                 notDeep = false;
             }
@@ -87,16 +88,11 @@ export class FormatProvider implements vscode.DocumentFormattingEditProvider {
                 }
             }
 
-            if (purityText.match(/}/) != null) {
-                let temp = purityText.match(/}/).length;
-                const t2 = purityText.match(/{[^{}]*}/);
-                if (t2) {
-                    temp = temp - t2.length;
+            if (purityText.includes("}")) {
+                if (!purityText.includes("}:")) {
+                    deep--;
                 }
-                deep -= temp;
-                if (temp > 0) {
-                    notDeep = false;
-                }
+                notDeep = false;
             }
 
             if (oneCommandCode && purityText.match(/{/) != null) {
@@ -143,16 +139,11 @@ export class FormatProvider implements vscode.DocumentFormattingEditProvider {
                 notDeep = false;
             }
 
-            if (purityText.match(/{/) != null) {
-                let temp = purityText.match(/{/).length;
-                const t2 = purityText.match(/{[^{}]*}/);
-                if (t2) {
-                    temp = temp - t2.length;
+            if (purityText.includes("{")) {
+                if (!purityText.includes("{:")) {
+                    deep++;
                 }
-                deep += temp;
-                if (temp > 0) {
-                    notDeep = false;
-                }
+                notDeep = false;
             }
 
             if (purityText.match(/:\s*$/)) {

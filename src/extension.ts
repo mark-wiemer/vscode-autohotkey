@@ -53,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
             new FormatProvider(),
         ),
         vscode.languages.registerReferenceProvider(language, new RefProvider()),
-        TemplateProvider.createEditorListenr(),
+        TemplateProvider.createEditorListener(),
         vscode.debug.registerDebugAdapterDescriptorFactory(
             'ahk',
             new InlineDebugAdapterFactory(),
