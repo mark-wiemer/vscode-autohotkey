@@ -4,6 +4,11 @@ This document covers the development process, from writing code to publishing a 
 
 > Throughout the document, `F1` is short for Show all commands / Open [command palette](https://code.visualstudio.com/api/ux-guidelines/command-palette)
 
+## Environment
+
+-   Node 22
+-   npm 11
+
 ## Writing
 
 1. Write your change on any branch other than `main`

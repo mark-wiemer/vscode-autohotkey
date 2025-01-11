@@ -11,7 +11,8 @@
         "baseUrl": ".",
         "paths": {
             "mocha": ["node_modules/@types/mocha"]
-        }
+        },
+        "skipLibCheck": true
     },
     "exclude": ["node_modules", "./ahk2/node_modules"]
 }
